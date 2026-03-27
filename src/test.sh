@@ -1,11 +1,12 @@
-EXPECTED:"Hello, Test!"
-OUTPUT:${node -e  "console.log(require('./app.js')('Test'))"}
+#!/bin/bash
 
-if ["OUTPUT"=="EXPECTED"]; then
-echo "Test passed"
-exit 0
+EXPECTED="Hello, Test!"
+OUTPUT=$(node -e "console.log(require('./app.js')('Test'))")
+
+if [ "$OUTPUT" == "$EXPECTED" ]; then
+  echo "Test passed"
+  exit 0
 else
-echo "Test failed! X"
-exit 1
-
-
+  echo "Test failed!"
+  exit 1
+fi
