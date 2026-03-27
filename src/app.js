@@ -1,8 +1,8 @@
 function greet(name) {
-  return `hello, ${name}!`;
+  return `Hello, ${name}!`;
 }
 
-module.expert = greet;
+module.exports = greet;
 
 if (require.main === module) {
   console.log(greet("World"));
