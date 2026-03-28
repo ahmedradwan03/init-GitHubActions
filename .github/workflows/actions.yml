@@ -1,0 +1,45 @@
+name: Matrix Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job_1:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node_version: [14.x, 15.x, 16.x]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+
+
+
+# name: Hybrid Workflow
+
+# on:
+#   workflow_dispatch:
+
+# jobs:
+#   hybrid_job:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Run a command in Ubuntu VM
+#         run: echo "This runs on the Ubuntu VM"
+
+#       - name: Run inside an Alpine container
+#         uses: docker://alpine:3.14
+#         with:
+#           entrypoint: /bin/sh
+#           args: -c "echo 'This step runs inside an Alpine container'"
+
+#       - name: Run another command in Ubuntu VM
+#         run: echo "Back to the VM"
