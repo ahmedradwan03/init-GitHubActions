@@ -1,0 +1,17 @@
+on: 
+  workflow_dispatch:
+jobs:
+  expressions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message
+        run: echo "The job is running ..." 
+        # if: ${{github.event_name !='push'}}
+        if: success()
+        # always() if 0||1 => run
+        # failure() if 0 => run
+        # cancelled() if workflow cancelled
+        
+      - name: Failure message
+        run: echo "Pipeline failed ❌"
+        if: failure()
